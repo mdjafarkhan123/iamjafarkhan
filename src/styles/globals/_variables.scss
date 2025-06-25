@@ -1,0 +1,77 @@
+@font-face {
+    font-display: swap;
+    font-family: "Poppins";
+    font-style: normal;
+    font-weight: 400;
+    src: url("../assets/fonts/poppins-v22-latin-regular.woff2") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+
+@font-face {
+    font-display: swap;
+    font-family: "Poppins";
+    font-style: normal;
+    font-weight: 500;
+    src: url("../assets/fonts/poppins-v22-latin-500.woff2") format("woff2");
+}
+@font-face {
+    font-display: swap;
+    font-family: "Poppins";
+    font-style: normal;
+    font-weight: 600;
+    src: url("../assets/fonts/poppins-v22-latin-600.woff2") format("woff2");
+}
+@font-face {
+    font-display: swap;
+    font-family: "Saira Extra Condensed";
+    font-style: normal;
+    font-weight: 800;
+    src: url("../assets/fonts/saira-extra-condensed-v13-latin-800.woff2")
+        format("woff2");
+}
+@font-face {
+    font-display: swap;
+    font-family: "Saira Extra Condensed";
+    font-style: normal;
+    font-weight: 900;
+    src: url("../assets/fonts/saira-extra-condensed-v13-latin-900.woff2")
+        format("woff2");
+}
+:root {
+    --x: 0;
+    --y: 0;
+    --color-primary: #17f700;
+    --color-heading-white: #ffffff;
+    --color-heading-dark: #0c0c0c;
+    --color-text-white: #f1f1f1;
+    --color-text-dark: #1b1b1b;
+    --color-bg-white: #ffffff;
+    --color-bg-dark: #000000;
+    --color-offwhite: #e9e9e9;
+
+    /* Interactive States */
+    --color-hover: #004494;
+
+    /* Feedback Colors */
+    --color-success: #28a745;
+    --color-error: #dc3545;
+    --color-warning: #ffc107;
+
+    /* Border and Dividers */
+    --color-border: #d1d5db;
+
+    /*========== Font size =====*/
+    --fs-sm: clamp(1rem, 0.779rem + 0.93vw, 1.5rem);
+    --fs-md: clamp(1.25rem, 0.808rem + 1.86vw, 2.25rem);
+    --fs-lg: clamp(1.75rem, 0.756rem + 4.186vw, 4rem);
+    --fs-xl: clamp(3rem, 1.674rem + 5.581vw, 6rem);
+    --fs-2xl: clamp(5rem, 0.833rem + 16.667vw, 13.75rem);
+
+    /*======= Spacing ===========*/
+    --space-sm: clamp(1rem, 0.6134rem + 1.6279vw, 1.875rem); /* 16px - 24px */
+    --space-md: clamp(1.5rem, 1.0581rem + 1.8605vw, 2.5rem); /* 24px - 40px */
+    --space-lg: clamp(2.25rem, 1.587rem + 2.791vw, 3.75rem); /* 36px - 60px */
+    --space-xl: clamp(2.25rem, 0.464rem + 7.143vw, 6rem); /* 48px - 80px */
+    --space-2xl: clamp(4.5rem, 3.1744rem + 5.5814vw, 7.5rem); /* 72px - 120px */
+
+    --round: clamp(3.75rem, -0.116rem + 16.279vw, 12.5rem);
+}

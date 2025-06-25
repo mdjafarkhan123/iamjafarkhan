@@ -1,0 +1,236 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Project from "../components/Project.astro";
+import projects from "../data/project";
+import Spinner from "../components/Spinner.vue";
+---
+
+<Layout>
+    <main>
+        <div class="page-wrapper">
+            <span id="cursorFollower" class="cursorFollower"></span>
+            <section class="works">
+                <div class="works__container container">
+                    <div class="works__data">
+                        <h1 class="works__title">PROJECTS</h1>
+                        <p class="works__subtitle subtitle">
+                            Checkout some of my latest works - Each project is
+                            built with care and creativity
+                        </p>
+                    </div>
+                    <div class="works__showcase">
+                        {
+                            projects.map((project) => (
+                                <Project
+                                    title={project.title}
+                                    category={project.tag}
+                                    image={project.image}
+                                />
+                            ))
+                        }
+                    </div>
+                </div>
+                <div class="works__helper-section"></div>
+            </section>
+
+            <section class="cta">
+                <div class="container cta__container">
+                    <div class="cta__content">
+                        <h2 class="cta__title cta__title--small">Let's</h2>
+                        <div class="cta__title-wrapper">
+                            <h2 class="cta__title cta__title--big">BUILD</h2>
+                            <a href="./contact">
+                                <Spinner client:load />
+                            </a>
+                            <h2 class="cta__title cta__title--big">GREAT</h2>
+                        </div>
+                        <h2 class="cta__title cta__title--small">
+                            Things Together
+                        </h2>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+    <script>
+        import { gsap } from "gsap";
+        document.addEventListener("DOMContentLoaded", () => {
+            function cursorFollowerEffect() {
+                if (window.innerWidth <= 1024) return;
+                const follower = document.getElementById("cursorFollower");
+                const wrapper = document.querySelector(".page-wrapper");
+
+                let targetX = 0,
+                    targetY = 0;
+                let currentX = 0,
+                    currentY = 0;
+
+                wrapper.addEventListener("mousemove", (e) => {
+                    const rect = wrapper.getBoundingClientRect();
+                    targetX = e.clientX - rect.left;
+                    targetY = e.clientY - rect.top;
+                });
+
+                gsap.ticker.add(() => {
+                    currentX += (targetX - currentX) * 0.04;
+                    currentY += (targetY - currentY) * 0.04;
+
+                    gsap.set(follower, {
+                        x: currentX,
+                        y: currentY,
+                    });
+                });
+            }
+
+            function buttonEffect() {
+                function resetMagnet(button, text) {
+                    gsap.to(button, {
+                        x: 0,
+                        y: 0,
+                        duration: 2.5,
+                        ease: "elastic.out(1.2, 0.2)",
+                    });
+
+                    gsap.to(text, {
+                        x: 0,
+                        y: 0,
+                        ease: "power3.out",
+                    });
+                }
+
+                const buttons = document.querySelectorAll(".magnetic-button");
+                buttons.forEach((button) => {
+                    const text = button.querySelector(".btn .text");
+                    const buttonMagnetPower = button.dataset.strength;
+                    const textMagnetPower = button.dataset.strengthText;
+                    const bg = button.querySelector(".btn__bg");
+
+                    //========= BG follow mouse effect
+                    const handleOrigin = (e) => {
+                        const rect = button.getBoundingClientRect();
+                        bg.style.left = `${e.clientX - rect.left}px`;
+                        bg.style.top = `${e.clientY - rect.top}px`;
+                    };
+
+                    button.addEventListener("mouseenter", (e) => {
+                        handleOrigin(e);
+                    });
+                    button.addEventListener("mousemove", function (e) {
+                        const rect = button.getBoundingClientRect();
+                        const offsetX = e.clientX - rect.left - rect.width / 2;
+                        const offsetY = e.clientY - rect.top - rect.height / 2;
+
+                        // Move button and text with GSAP
+                        gsap.to(button, {
+                            x: offsetX * 0.5 * buttonMagnetPower,
+                            y: offsetY * 0.5 * buttonMagnetPower,
+                            duration: 0.5,
+                            ease: "power3.out",
+                            overwrite: "auto",
+                        });
+
+                        gsap.to(text, {
+                            x: offsetX * textMagnetPower * 0.5,
+                            y: offsetY * textMagnetPower * 0.5,
+                            duration: 0.5,
+                            ease: "power3.out",
+                            overwrite: "auto",
+                        });
+                    });
+
+                    button.addEventListener("mouseleave", (e) => {
+                        resetMagnet(button, text);
+                        handleOrigin(e);
+                    });
+                });
+            }
+
+            buttonEffect();
+            cursorFollowerEffect();
+        });
+    </script>
+</Layout>
+
+<style lang="scss">
+    @use "../styles/utils" as responsive;
+    main {
+        position: relative;
+        z-index: 2;
+        pointer-events: none;
+    }
+    .works {
+        padding: calc(var(--space-md) + 100px) 0 var(--space-2xl) 0;
+        z-index: 2;
+        overflow: hidden;
+        pointer-events: all;
+        &__container {
+            flex-flow: column;
+            gap: var(--space-xl);
+        }
+        &__data {
+            display: flex;
+            flex-flow: column;
+            gap: var(--space-sm);
+            text-align: center;
+        }
+
+        &__showcase {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 2em;
+        }
+    }
+
+    .cta {
+        border-radius: 0 0 var(--round) var(--round);
+        overflow: hidden;
+        pointer-events: all;
+        &__container {
+            max-width: 1280px;
+        }
+        &__content {
+            display: flex;
+            flex-flow: column;
+            justify-content: center;
+            align-items: center;
+            gap: var(--space-sm);
+            width: 100%;
+            padding-bottom: var(--space-2xl);
+        }
+        &__title {
+            text-align: center;
+            &-wrapper {
+                width: 100%;
+                display: flex;
+                flex-flow: column;
+                align-items: center;
+                .cta__image {
+                    width: clamp(10.625rem, 8.802rem + 7.674vw, 14.75rem);
+                    margin: var(--space-sm);
+                }
+            }
+            &--small {
+                font-size: var(--fs-xl);
+            }
+
+            &--big {
+                font-size: var(--fs-2xl);
+            }
+        }
+    }
+
+    @include responsive.respond-to("laptop") {
+        .works {
+            &__showcase {
+                grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
+            }
+        }
+
+        .cta {
+            &__title-wrapper {
+                flex-flow: row;
+                justify-content: space-between;
+            }
+        }
+    }
+</style>

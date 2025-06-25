@@ -1,0 +1,230 @@
+<header class="header">
+    <div class="header__container">
+        <div class="header__nav">
+            <div class="header__logo">
+                <a href="/">
+                    <svg
+                        id="Layer_1"
+                        data-name="Layer 1"
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 88.47 59.44"
+                        ><path d="M68.74,0l5.41,5.59L20.09,59.44,14.54,54Z"
+                        ></path><path
+                            d="M77.88,30l-7.74-6L76.5,18l12,11.89L71.24,47.2l-6.13-5.62Z"
+                        ></path><path
+                            d="M18,36.57l-6,6L0,30.19,17.31,13.11l5.87,5.71L11.64,30Z"
+                        ></path></svg
+                    >
+                    <span class="logo-text"> Code by Jafar </span>
+                </a>
+            </div>
+            <div class="header__action">
+                <a
+                    href="./contact"
+                    class="btn magnetic-button"
+                    data-strength="1.5"
+                    data-strength-text=".7"
+                >
+                    <span class="text">Get in touch</span>
+                    <span class="btn__bg"></span>
+                </a>
+            </div>
+            <div
+                class="header__toggler btn magnetic-button"
+                data-strength="1.5"
+                data-strength-text=".7"
+            >
+                <input type="checkbox" />
+                <div class="text">
+                    <span class="line line-1"></span>
+                    <span class="line line-2"></span>
+                </div>
+                <span class="btn__bg"></span>
+            </div>
+            <div class="header__menu header__menu-wrapper">
+                <svg
+                    class="transition"
+                    viewBox="0 0 100 100"
+                    preserveAspectRatio="none"
+                >
+                    <path
+                        class="path"
+                        fill="var(--color-bg-white)"
+                        dur="10s"
+                        vector-effect="non-scaling-stroke"
+                        d="M 0 100 L 100 100 100 100 0 100 C 0 0, 0 0, 0 100"
+                    ></path>
+                </svg>
+                <ul class="header__menu-list">
+                    <li class="header__menu-item">
+                        <a href="/" class="header__menu-item-link">Home</a>
+                    </li>
+                    <li class="header__menu-item">
+                        <a href="/#about" class="header__menu-item-link"
+                            >About</a
+                        >
+                    </li>
+                    <li class="header__menu-item">
+                        <a href="/works" class="header__menu-item-link">Works</a
+                        >
+                    </li>
+                    <li class="header__menu-item">
+                        <a href="/contact" class="header__menu-item-link"
+                            >Contact</a
+                        >
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</header>
+
+<style lang="scss">
+    @use "../styles/utils" as *;
+    .header {
+        position: relative;
+        z-index: 3;
+        min-height: 80px;
+        margin-bottom: -100px;
+        &__container {
+            max-width: 1920px;
+            display: flex;
+            padding-block: 0.5em;
+            padding-inline: 1em;
+            z-index: inherit;
+        }
+
+        &__nav {
+            display: flex;
+            width: 100%;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+            z-index: inherit;
+        }
+        &__logo {
+            flex-grow: 1;
+            z-index: inherit;
+            a {
+                display: flex;
+                width: fit-content;
+                font-size: clamp(0.875rem, 0.667rem + 0.833vw, 1rem);
+                font-weight: 600;
+                gap: 10px;
+                color: var(--color-text-white);
+                svg {
+                    width: clamp(1.5rem, 0.667rem + 3.333vw, 2rem);
+                    fill: var(--color-primary);
+                }
+            }
+        }
+
+        &__action {
+            display: none;
+            .btn {
+                font-size: clamp(0.875rem, 0.709rem + 0.698vw, 1.25rem);
+                color: var(--color-text-white);
+                padding: clamp(0.625rem, 0.459rem + 0.698vw, 1rem)
+                    clamp(1.25rem, 0.952rem + 1.19vw, 1.875rem);
+            }
+        }
+
+        &__toggler.btn {
+            --size: clamp(3.125rem, 2.645rem + 1.829vw, 4.063rem);
+            position: relative;
+            display: flex;
+            max-width: var(--size);
+            width: var(--size);
+            height: var(--size);
+            flex-flow: column;
+            justify-content: center;
+            align-items: center;
+            background-color: var(--color-primary);
+            border-radius: 100vmax;
+            gap: 5px;
+            z-index: inherit;
+            overflow: hidden;
+            padding: 0;
+            pointer-events: none;
+            .btn__bg {
+                background-color: var(--color-bg-dark);
+            }
+            input {
+                width: var(--size);
+                height: var(--size);
+                appearance: none;
+                position: absolute;
+                cursor: pointer;
+                pointer-events: all;
+            }
+
+            .text {
+                position: relative;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                width: 100%;
+                height: 100%;
+                pointer-events: none;
+
+                .line {
+                    display: block;
+                    max-width: 28px;
+                    width: 100%;
+                    height: 2px;
+                    background-color: rgba(255, 255, 255, 0.748);
+                    transform-origin: center;
+                    transition: all 0.4s ease-in-out;
+                }
+
+                .line-1 {
+                    transform: translateY(-3px);
+                }
+                .line-2 {
+                    transform: translateY(3px);
+                }
+            }
+        }
+
+        &__menu {
+            position: fixed;
+            width: 100%;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            left: 0;
+            top: 0;
+            z-index: 1;
+            .transition {
+                position: absolute;
+                left: 0;
+                top: -20px;
+                width: 100%;
+                min-height: calc(100vh + 40px);
+                z-index: inherit;
+            }
+
+            &-list {
+                display: none;
+                text-align: center;
+                z-index: 2;
+                pointer-events: all;
+            }
+
+            &-item {
+                font-size: var(--fs-xl);
+                font-weight: 700;
+                opacity: 0;
+                transform: translateY(40px);
+            }
+        }
+    }
+
+    @include respond-to("mobile") {
+        .header__action {
+            display: block;
+        }
+    }
+</style>

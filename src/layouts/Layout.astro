@@ -1,0 +1,43 @@
+---
+import Footer from "../components/Footer.astro";
+import Header from "../components/Header.astro";
+---
+
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width" />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <meta name="generator" content={Astro.generator} />
+        <title>Jafar Khan</title>
+    </head>
+    <body>
+        <Header />
+        <slot />
+        <Footer />
+        <script src="../code/hamburgermenu.js"></script>
+    </body>
+</html>
+
+<style is:global lang="scss">
+    @use "../styles/globals";
+    @use "../styles/utils" as responsive;
+    main {
+        margin-bottom: 15em;
+    }
+
+    .active-fadein {
+        display: block !important;
+        opacity: 1 !important;
+        transition: 0.5s ease all !important;
+    }
+    @include responsive.respond-to("laptop") {
+        main {
+            margin-bottom: 10em;
+        }
+    }
+    @view-transition {
+        navigation: auto;
+    }
+</style>

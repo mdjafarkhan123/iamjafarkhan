@@ -1,0 +1,20 @@
+{
+  "name": "testing",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/vue": "^5.0.9",
+    "astro": "^5.6.1",
+    "gsap": "^3.13.0",
+    "lenis": "^1.2.3",
+    "sass": "^1.86.3",
+    "swiper": "^11.2.6",
+    "vue": "^3.5.13"
+  }
+}

@@ -1,0 +1,166 @@
+<footer class="footer">
+    <div class="container footer__container">
+        <div class="footer__text">
+            <h2 class="footer__text--small">Crafting</h2>
+            <h2 class="footer__text--big">Since 2020</h2>
+        </div>
+        <div class="footer__contact">
+            <a
+                href="mailto:profile.mdjafarkhan@gmail.com"
+                class="btn footer__contact-link magnetic-button"
+                data-strength="1.5"
+                data-strength-text=".4"
+            >
+                <span class="text"> profile.mdjafarkhan@gmail.com </span>
+                <span class="btn__bg"></span>
+            </a>
+        </div>
+        <ul id="footer-socials" class="footer__socials">
+            <li class="footer__socials-item">
+                <a
+                    href=""
+                    class="footer__socials-item-link btn magnetic-button"
+                    data-strength="1.5"
+                    data-strength-text=".4"
+                >
+                    <span class="text">Linkedin</span>
+                    <span class="btn__bg"></span>
+                </a>
+            </li>
+            <li class="footer__socials-item">
+                <a
+                    href=""
+                    class="footer__socials-item-link btn magnetic-button"
+                    data-strength="1.5"
+                    data-strength-text=".4"
+                >
+                    <span class="text">Behance</span>
+                    <span class="btn__bg"></span>
+                </a>
+            </li>
+            <li class="footer__socials-item">
+                <a
+                    href=""
+                    class="footer__socials-item-link btn magnetic-button"
+                    data-strength="1.5"
+                    data-strength-text=".4"
+                >
+                    <span class="text">Fiverr</span>
+                    <span class="btn__bg"></span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</footer>
+<script src="../code/lenis.js"></script>
+
+<style lang="scss">
+    @use "../styles/utils" as responsive;
+    .footer {
+        display: flex;
+        align-items: flex-end;
+        height: 100vh;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 1;
+        background-color: var(--color-bg-white);
+        color: var(--color-text-dark);
+        padding-top: var(--space-2xl);
+        padding-bottom: var(--space-md);
+        &__container {
+            max-width: 1920px;
+        }
+        .btn {
+            padding: unset;
+            border: unset;
+            &:hover .text {
+                color: var(--color-text-white);
+                transition: color 0.3s ease-in-out;
+            }
+            &__bg {
+                background: var(--color-bg-dark);
+            }
+        }
+        @mixin round-style {
+            border: 1px solid var(--color-bg-dark);
+            padding: 0.3em 1em;
+            border-radius: 50px;
+        }
+
+        &__container {
+            flex-flow: column;
+            justify-content: center;
+            align-items: center;
+            gap: var(--space-sm);
+        }
+        .footer__text {
+            text-align: center;
+            &--small {
+                font-size: clamp(2.25rem, 1.417rem + 3.333vw, 4rem);
+                font-weight: 800;
+            }
+            &--big {
+                font-size: clamp(3.5rem, 2.538rem + 3.846vw, 5rem);
+                white-space: nowrap;
+            }
+        }
+
+        &__contact {
+            .btn {
+                font-size: clamp(1rem, 0.89rem + 0.465vw, 1.25rem);
+                @include round-style();
+            }
+        }
+
+        #footer-socials {
+            font-size: clamp(1rem, 0.89rem + 0.465vw, 1.25rem);
+            display: flex;
+            justify-content: space-between;
+            gap: 0.5em;
+            width: 100%;
+            max-width: max(60%, 400px);
+            .footer__socials-item {
+                &-link {
+                    @include round-style();
+                }
+            }
+        }
+    }
+
+    @include responsive.respond-to("laptop") {
+        .footer {
+            &__container {
+                flex-flow: row;
+                max-width: 1600px;
+                justify-content: space-between;
+                gap: 1em;
+            }
+            &__text {
+                &--small {
+                    font-size: clamp(
+                        2.5rem,
+                        -6.286rem + 13.714vw,
+                        4rem
+                    ) !important;
+                }
+                &--big {
+                    font-size: clamp(
+                        3.75rem,
+                        -9.341rem + 20.455vw,
+                        6rem
+                    ) !important;
+                }
+            }
+            #footer-socials {
+                max-width: fit-content;
+                justify-content: center;
+                order: 3;
+            }
+            &__text {
+                order: 2;
+            }
+        }
+    }
+</style>
