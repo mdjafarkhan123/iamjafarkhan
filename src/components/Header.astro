@@ -3,19 +3,42 @@
         <div class="header__nav">
             <div class="header__logo">
                 <a href="/">
-                    <svg
-                        id="Layer_1"
-                        data-name="Layer 1"
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 88.47 59.44"
-                        ><path d="M68.74,0l5.41,5.59L20.09,59.44,14.54,54Z"
-                        ></path><path
-                            d="M77.88,30l-7.74-6L76.5,18l12,11.89L71.24,47.2l-6.13-5.62Z"
-                        ></path><path
-                            d="M18,36.57l-6,6L0,30.19,17.31,13.11l5.87,5.71L11.64,30Z"
-                        ></path></svg
-                    >
-                    <span class="logo-text"> Code by Jafar </span>
+                    <div class="logo">
+                        <div class="logo__wrapper">
+                            <div class="logo__content">
+                                <svg
+                                    class="logo__icon"
+                                    id="Layer_1"
+                                    data-name="Layer 1"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 88.47 59.44"
+                                    ><path
+                                        d="M68.74,0l5.41,5.59L20.09,59.44,14.54,54Z"
+                                    ></path><path
+                                        d="M77.88,30l-7.74-6L76.5,18l12,11.89L71.24,47.2l-6.13-5.62Z"
+                                    ></path><path
+                                        d="M18,36.57l-6,6L0,30.19,17.31,13.11l5.87,5.71L11.64,30Z"
+                                    ></path></svg
+                                >
+                                <span class="logo__text"> Code by Jafar </span>
+                            </div>
+                            <svg
+                                class="logo__border"
+                                viewBox="0 0 235 56"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg"
+                            >
+                                <rect
+                                    x="1"
+                                    y="1"
+                                    width="233"
+                                    height="54"
+                                    rx="27"
+                                    stroke="white"
+                                    stroke-width="2"></rect>
+                            </svg>
+                        </div>
+                    </div>
                 </a>
             </div>
             <div class="header__action">
@@ -82,10 +105,12 @@
 <style lang="scss">
     @use "../styles/utils" as *;
     .header {
+        opacity: 1;
         position: relative;
         z-index: 3;
         min-height: 80px;
         margin-bottom: -100px;
+        pointer-events: none;
         &__container {
             max-width: 1920px;
             display: flex;
@@ -106,21 +131,33 @@
             flex-grow: 1;
             z-index: inherit;
             a {
-                display: flex;
-                width: fit-content;
-                font-size: clamp(0.875rem, 0.667rem + 0.833vw, 1rem);
-                font-weight: 600;
-                gap: 10px;
-                color: var(--color-text-white);
-                svg {
-                    width: clamp(1.5rem, 0.667rem + 3.333vw, 2rem);
-                    fill: var(--color-primary);
+                display: inline-block;
+                pointer-events: all;
+                .logo {
+                    opacity: 1;
+                }
+                .logo__content {
+                    color: var(--color-heading-white);
+                }
+
+                .logo__border {
+                    stroke-dasharray: 320%;
+                    stroke-dashoffset: 0;
+                    transition: 1s ease all;
+                }
+
+                &:hover .logo__border {
+                    stroke-dasharray: 320%;
+                    stroke-dashoffset: 320%;
+                    transition: 1s ease all;
                 }
             }
         }
 
         &__action {
+            opacity: 1;
             display: none;
+            pointer-events: all;
             .btn {
                 font-size: clamp(0.875rem, 0.709rem + 0.698vw, 1.25rem);
                 color: var(--color-text-white);
@@ -131,6 +168,7 @@
 
         &__toggler.btn {
             --size: clamp(3.125rem, 2.645rem + 1.829vw, 4.063rem);
+            opacity: 1;
             position: relative;
             display: flex;
             max-width: var(--size);
