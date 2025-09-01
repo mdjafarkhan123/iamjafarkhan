@@ -14,14 +14,11 @@ const headerButton = document.querySelector(".header__action");
 const headerMenu = document.querySelector(".header__toggler");
 
 function preloader() {
-    if (localStorage.getItem("loaded") == "true") {
-        intro.style.display = "none";
-        document.body.classList.remove("no-scroll");
-        return;
-    }
+
     gsap.set([headerLogo, headerButton, headerMenu], {
         autoAlpha: 0,
     });
+
     gsap.set(logoText, {
         autoAlpha: 1,
     });
@@ -30,7 +27,6 @@ function preloader() {
             onComplete: () => {
                 intro.style.display = "none";
                 document.body.classList.remove("no-scroll");
-                localStorage.setItem("loaded", true);
                 console.log(localStorage.getItem("loaded"));
                 split.revert();
             },
