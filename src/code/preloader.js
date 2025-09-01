@@ -14,10 +14,10 @@ const headerButton = document.querySelector(".header__action");
 const headerMenu = document.querySelector(".header__toggler");
 
 function preloader() {
-
     gsap.set([headerLogo, headerButton, headerMenu], {
         autoAlpha: 0,
     });
+    gsap.set("body", { className: "no-scroll" });
 
     gsap.set(logoText, {
         autoAlpha: 1,
@@ -27,7 +27,6 @@ function preloader() {
             onComplete: () => {
                 intro.style.display = "none";
                 document.body.classList.remove("no-scroll");
-                console.log(localStorage.getItem("loaded"));
                 split.revert();
             },
         });
