@@ -1,4 +1,5 @@
 ---
+import { Image } from "astro:assets";
 import Layout from "../layouts/Layout.astro";
 import Project from "../components/Project.astro";
 import projects from "../data/project";
@@ -8,7 +9,7 @@ import Logo2 from "../assets/images/logos/chefmade.png";
 import Logo3 from "../assets/images/logos/nemely.png";
 import Logo4 from "../assets/images/logos/nuvo.png";
 import Logo5 from "../assets/images/logos/truevast.png";
-import Spinner from "../components/Spinner.vue";
+import jafarkhanmini from "../assets/images/jafarkhancircle.avif";
 import "swiper/css";
 
 const works1 = projects.slice(0, 2);
@@ -239,8 +240,27 @@ const works2 = projects.slice(2, 4);
                         <h2 class="cta__title cta__title--small">Let's</h2>
                         <div class="cta__title-wrapper">
                             <h2 class="cta__title cta__title--big">BUILD</h2>
-                            <a href="./contact">
-                                <Spinner client:load />
+                            <a href="./contact" class="cta__rolling-text">
+                                <Image src={jafarkhanmini} alt="Jafar Khan" />
+                                <svg
+                                    viewBox="0 0 250.5 250.5"
+                                    height="250.5"
+                                    width="250.5"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                >
+                                    <path
+                                        d="M.25,125.25a125,125,0,1,1,125,125,125,125,0,0,1-125-125"
+                                        id="e-path-bdad50e"></path>
+                                    <text>
+                                        <textPath
+                                            id="e-text-path-bdad50e"
+                                            href="#e-path-bdad50e"
+                                            startOffset="0%"
+                                        >
+                                            GET IN TOUCH ● GET IN TOUCH ●
+                                        </textPath>
+                                    </text>
+                                </svg>
                             </a>
                             <h2 class="cta__title cta__title--big">GREAT</h2>
                         </div>
@@ -528,6 +548,7 @@ const works2 = projects.slice(2, 4);
                 display: flex;
                 flex-flow: column;
                 align-items: center;
+                gap: var(--space-sm);
                 .cta__image {
                     width: clamp(10.625rem, 8.802rem + 7.674vw, 14.75rem);
                     margin: var(--space-sm);
@@ -539,6 +560,50 @@ const works2 = projects.slice(2, 4);
 
             &--big {
                 font-size: var(--fs-2xl);
+            }
+        }
+        &__rolling-text {
+            --size: clamp(9.375rem, 7.143rem + 7.143vw, 12.5rem);
+            width: var(--size);
+            min-height: var(--size);
+            position: relative;
+
+            img {
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                transform: translate(-50%, -52%);
+                width: calc(var(--size) - 30px);
+                height: calc(var(--size) - 30px);
+                object-fit: cover;
+                object-position: top center;
+                border-radius: 100vmax;
+            }
+            svg {
+                height: auto;
+                overflow: visible;
+                width: 100%;
+                fill: none;
+                animation: spinning 10s linear infinite;
+            }
+
+            svg textPath {
+                text-transform: uppercase;
+                word-spacing: 25px;
+                font-size: 1.4rem;
+                letter-spacing: 7px;
+                font-weight: 500;
+                /* color: red; */
+                fill: var(--color-heading-white);
+            }
+
+            @keyframes spinning {
+                from {
+                    transform: rotate(0deg);
+                }
+                to {
+                    transform: rotate(360deg);
+                }
             }
         }
     }
