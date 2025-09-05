@@ -11,7 +11,7 @@ window.addEventListener("DOMContentLoaded", () => {
     let c = 100;
     let animationFrame;
     let body = document.body;
-    let logoText = document.querySelector(".logo-text");
+    let logoText = document.querySelector(".logo__text");
     let menuToggle = document.querySelector(".header__toggler");
     let menuIconOne = menuToggle.querySelector(".line-1");
     let menuIconTwo = menuToggle.querySelector(".line-2");

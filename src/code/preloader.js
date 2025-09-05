@@ -19,7 +19,7 @@ function preloader() {
     });
     gsap.set("body", { className: "no-scroll" });
 
-    gsap.set(logoText, {
+    gsap.set([logoText, logo], {
         autoAlpha: 1,
     });
     document.fonts.ready.then(() => {
