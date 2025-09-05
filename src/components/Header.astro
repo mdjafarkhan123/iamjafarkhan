@@ -135,9 +135,10 @@
                 pointer-events: all;
                 .logo {
                     opacity: 1;
-                }
-                .logo__content {
-                    color: var(--color-heading-white);
+                    &__text {
+                        color: var(--color-text-white);
+                        will-change: color;
+                    }
                 }
 
                 .logo__border {
@@ -256,6 +257,7 @@
                 font-weight: 700;
                 opacity: 0;
                 transform: translateY(40px);
+                will-change: transform, opacity;
             }
         }
     }
