@@ -157,6 +157,11 @@ textarea {
     position: fixed;
 }
 
+/* width */
+::-webkit-scrollbar {
+    display: none;
+}
+
 .btn {
     position: relative;
     display: flex;
